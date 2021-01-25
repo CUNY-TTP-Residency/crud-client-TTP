@@ -12,7 +12,8 @@ class CampusAdd extends Component{
         this.state = {
             name: '',
             address: '',
-            description: ''
+            description: '',
+            ImgUrl : 'https://th.bing.com/th/id/OIP.MzaYsaBOJ3JeXj593w2w1QHaE7?pid=Api&rs=1',
         }
         this.handleName = this.handleName.bind(this);
         this.handleAddress = this.handleAddress.bind(this);
@@ -43,11 +44,12 @@ class CampusAdd extends Component{
     }
 
     onSubmit(event){
-        event.preventDefault();
+        
        const addCampus = {
            name  : this.state.name,
            address: this.state.address,
-           description : this.state.address
+           description : this.state.address,
+           ImgUrl : this.state.ImgUrl
        }
 
        this.createCampus(addCampus);
@@ -93,9 +95,9 @@ class CampusAdd extends Component{
     }
 }
 
-// CampusAdd.propTypes = {
-//     name : PropTypes.string.isRequired,
-//     address: PropTypes.string.isRequired,
-//     description: PropTypes.string,
-// };
+CampusAdd.propTypes = {
+    name : PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    description: PropTypes.string,
+};
 export default CampusAdd;
