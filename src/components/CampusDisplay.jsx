@@ -1,18 +1,37 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllCampuses } from '../redux/reducers';
 
 import Campus from './Campus';
+import CampusAdd from './CampusAdd';
 
 class CampusDisplay extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isHidden : false
+        }
+        this.handleClick = this.handleClick.bind(this);
+    }
+
     async componentDidMount(){
         console.log("CAMPUS DISPLAY MOUNTED");
         await this.props.getAllCampuses();
     }
 
+    
+    handleClick(event){
+        this.setState({
+            isHidden : !this.isHidden
+        });
+    }
+
     render() {
         return(
             <>
+            {this.state.isHidden && <CampusAdd/>}
+            <button type = 'button' onClick = {this.handleClick} >Add Campus</button>
              {this.props.campuses.map((campus, index) => {
                  return (
                     <Campus 
